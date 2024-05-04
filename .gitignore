@@ -1,0 +1,4 @@
+app/dist/resources
+app/dist/test-resources
+app/dist/test
+node_modules

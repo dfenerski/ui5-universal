@@ -1,0 +1,19 @@
+<mvc:View
+    controllerName="com.github.dfenerski.ui5_ssr.controller.Main"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:ssr="com.github.dfenerski.ui5_ssr.modules.ssr"
+>
+
+    <Page id="mainPage" title="{i18n>appTitle}">
+        <content>
+            <Button id="actionButton" text="Action Btn" press="handleActionButtonPress" />
+            <Button id="demoButton" text="Demo Btn" press="handleDemoButtonPress" />
+            <!-- <ssr:Button id="demoButton" text="Demo Btn" press="handleDemoButtonPress" /> -->
+            <!-- <core:HTML content="{app>/html}" /> -->
+        </content>
+    </Page>
+
+</mvc:View>
