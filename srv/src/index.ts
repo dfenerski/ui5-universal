@@ -1,3 +1,4 @@
+import compression from 'compression';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -9,6 +10,9 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = 3000;
+
+// Use compression
+app.use(compression());
 
 // Serve static files
 app.use(express.static(path.join(__dirname, '../../app/dist')));

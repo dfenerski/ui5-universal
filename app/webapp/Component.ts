@@ -28,7 +28,7 @@ export default class Component extends UIComponent {
         // create the views based on the url/hash
         this.getRouter().initialize();
 
-        const SSR_CONTROLS = ['sap.m.Button'];
+        const SSR_CONTROLS = ['sap.m.Page'];
         // @ts-expect-error behold
         const getRenderer = sap.ui.core.ElementMetadata.prototype.getRenderer;
         // @ts-expect-error behold
@@ -36,22 +36,36 @@ export default class Component extends UIComponent {
             const renderer = getRenderer.call(this);
             //
             if (SSR_CONTROLS.includes(this.getName())) {
+                const controlClass = this.getClass();
                 const render = renderer.render;
+                const onAfterRendering =
+                    controlClass.prototype.onAfterRendering;
                 renderer.render = function (
                     rm: RenderManager,
                     control: Control,
                 ) {
-                    const preservedContent$ = <any>(
-                        RenderManager.findPreservedContent(control.getId())
+                    // const preservedContent$ = <any>(
+                    //     RenderManager.findPreservedContent(control.getId())
+                    // );
+                    const preservedContent = document.querySelector(
+                        `#sap-ui-ssr #${control.getId()}`,
                     );
-                    const preservedContent: HTMLElement = preservedContent$[0];
                     if (preservedContent) {
-                        preservedContent.remove();
+                        // preservedContent.remove();
                         rm.unsafeHtml(preservedContent.outerHTML);
                         console.error('Preserved content rendered');
                         return;
                     }
                     render.call(renderer, rm, control);
+                };
+                controlClass.prototype.onAfterRendering = function () {
+                    const preservedContent = document.querySelector(
+                        `#sap-ui-ssr #${this.getId()}`,
+                    );
+                    if (preservedContent) {
+                        preservedContent.remove();
+                    }
+                    onAfterRendering.call(this);
                 };
             }
             return renderer;

@@ -1,6 +1,6 @@
 "use strict";
 
-sap.ui.define(["sap/m/MessageBox", "./BaseController"], function (MessageBox, __BaseController) {
+sap.ui.define(["sap/m/MessageToast", "./BaseController"], function (MessageToast, __BaseController) {
   "use strict";
 
   function _interopRequireDefault(obj) {
@@ -11,8 +11,19 @@ sap.ui.define(["sap/m/MessageBox", "./BaseController"], function (MessageBox, __
    * @namespace com.github.dfenerski.ui5_ssr.controller
    */
   const Main = BaseController.extend("com.github.dfenerski.ui5_ssr.controller.Main", {
-    sayHello: function _sayHello() {
-      MessageBox.show("Hello World!");
+    handleDemoButtonPress: function _handleDemoButtonPress() {
+      MessageToast.show('Demo button pressed');
+    },
+    handleActionButtonPress: function _handleActionButtonPress() {
+      const page = this.getView().byId('mainPage');
+      const html = page.getContent()[1];
+      //
+      // RenderManager.preserveContent(
+      //     document.getElementById('__component0---main--demoButton'),
+      //     true,
+      //     false,
+      // );
+      MessageToast.show('Action button pressed');
     }
   });
   return Main;

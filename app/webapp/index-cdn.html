@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate" />
-		<meta http-equiv="Pragma" content="no-cache" />
-		<meta http-equiv="expires" content="0" />
+    <head>
+        <meta
+            http-equiv="Cache-control"
+            content="no-cache, no-store, must-revalidate"
+        />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
 
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>UI5 Application: com.github.dfenerski.ui5_ssr</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>UI5 Application: com.github.dfenerski.ui5_ssr</title>
 
-		<script
-			id="sap-ui-bootstrap"
-			src="https://sdk.openui5.org/1.120.11/resources/sap-ui-core.js"
-			data-sap-ui-resourceroots='{
-				"com.github.dfenerski.ui5_ssr": "./"
-			}'
-			data-sap-ui-theme="sap_horizon"
-			data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
-			data-sap-ui-async="true"
-			data-sap-ui-compatVersion="edge"
-			data-sap-ui-frameOptions="trusted"
-			data-sap-ui-xx-waitForTheme="true"
-			data-sap-ui-xx-supportedLanguages="en,de"
-		></script>
-	</head>
+        <script
+            id="sap-ui-bootstrap"
+            src="https://sdk.openui5.org/1.120.11/resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_horizon"
+            data-sap-ui-async="true"
+            data-sap-ui-compatVersion="edge"
+            data-sap-ui-excludeJQueryCompat="true"
+            data-sap-ui-frameOptions="trusted"
+            data-sap-ui-xx-supportedLanguages="en,de"
+        ></script>
+    </head>
 
-	<body class="sapUiBody">
-		<div data-sap-ui-component data-name="com.github.dfenerski.ui5_ssr"></div>
-	</body>
+    <body class="sapUiBody">
+        <script type="text/javascript">
+            sap.ui.getCore().attachInit(function () {
+                console.error('UI5 application initialized');
+                sap.ui.require(['sap/m/Button'], function (Button) {
+                    new Button('hwButton', {
+                        text: 'Hello World',
+                        press: function () {
+                            alert('Hello World');
+                        },
+                    }).placeAt(document.body);
+                    console.log(
+                        sap.ui.getCore().byId('hwButton').getDomRef().outerHTML,
+                    );
+                });
+            });
+        </script>
+    </body>
 </html>

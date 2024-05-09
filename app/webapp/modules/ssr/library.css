@@ -1,0 +1,3 @@
+#sap-ui-ssr:has(*) {
+    height: 100vh;
+}
