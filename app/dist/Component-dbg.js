@@ -1,6 +1,6 @@
 "use strict";
 
-sap.ui.define(["sap/ui/Device", "sap/ui/core/UIComponent", "./model/models"], function (Device, UIComponent, __models) {
+sap.ui.define(["sap/ui/Device", "sap/ui/core/ElementMetadata", "sap/ui/core/UIComponent", "./model/models"], function (Device, ElementMetadata, UIComponent, __models) {
   "use strict";
 
   function _interopRequireDefault(obj) {
@@ -29,9 +29,9 @@ sap.ui.define(["sap/ui/Device", "sap/ui/core/UIComponent", "./model/models"], fu
       this.getRouter().initialize();
       const SSR_CONTROLS = ['sap.m.Page'];
       // @ts-expect-error behold
-      const getRenderer = sap.ui.core.ElementMetadata.prototype.getRenderer;
+      const getRenderer = ElementMetadata.prototype.getRenderer;
       // @ts-expect-error behold
-      sap.ui.core.ElementMetadata.prototype.getRenderer = function () {
+      ElementMetadata.prototype.getRenderer = function () {
         const renderer = getRenderer.call(this);
         //
         if (SSR_CONTROLS.includes(this.getName())) {

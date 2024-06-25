@@ -1,5 +1,6 @@
 import Device from 'sap/ui/Device';
 import Control from 'sap/ui/core/Control';
+import ElementMetadata from 'sap/ui/core/ElementMetadata';
 import RenderManager from 'sap/ui/core/RenderManager';
 import UIComponent from 'sap/ui/core/UIComponent';
 import models from './model/models';
@@ -30,9 +31,9 @@ export default class Component extends UIComponent {
 
         const SSR_CONTROLS = ['sap.m.Page'];
         // @ts-expect-error behold
-        const getRenderer = sap.ui.core.ElementMetadata.prototype.getRenderer;
+        const getRenderer = ElementMetadata.prototype.getRenderer;
         // @ts-expect-error behold
-        sap.ui.core.ElementMetadata.prototype.getRenderer = function () {
+        ElementMetadata.prototype.getRenderer = function () {
             const renderer = getRenderer.call(this);
             //
             if (SSR_CONTROLS.includes(this.getName())) {
