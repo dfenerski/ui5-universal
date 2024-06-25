@@ -44,7 +44,7 @@ export default class Component extends UIComponent {
                     rm: RenderManager,
                     control: Control,
                 ) {
-                    // const preservedContent = <any>(
+                    // const preservedContent$ = <any>(
                     //     RenderManager.findPreservedContent(control.getId())
                     // );
                     const preservedContent = document.querySelector(

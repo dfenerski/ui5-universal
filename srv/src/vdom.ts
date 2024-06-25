@@ -1,5 +1,12 @@
 import { readFileSync } from 'fs';
 import { JSDOM } from 'jsdom';
+import Button from 'sap/m/Button';
+import CustomListItem from 'sap/m/CustomListItem';
+import Input from 'sap/m/Input';
+import Label from 'sap/m/Label';
+import List from 'sap/m/List';
+import Text from 'sap/m/Text';
+import Title from 'sap/m/Title';
 
 /**
  * TODO: check whether running instance per theme per devce is needed or

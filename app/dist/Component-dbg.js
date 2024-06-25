@@ -39,7 +39,7 @@ sap.ui.define(["sap/ui/Device", "sap/ui/core/UIComponent", "./model/models"], fu
           const render = renderer.render;
           const onAfterRendering = controlClass.prototype.onAfterRendering;
           renderer.render = function (rm, control) {
-            // const preservedContent = <any>(
+            // const preservedContent$ = <any>(
             //     RenderManager.findPreservedContent(control.getId())
             // );
             const preservedContent = document.querySelector(`#sap-ui-ssr #${control.getId()}`);
