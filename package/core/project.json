@@ -1,0 +1,32 @@
+{
+    "name": "@ui5-universal/core",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "package/core/src",
+    "projectType": "library",
+    "release": {
+        "version": {
+            "generatorOptions": {
+                "packageRoot": "dist\\{projectRoot}",
+                "currentVersionResolver": "git-tag"
+            }
+        }
+    },
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@nx/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "package/core/dist",
+                "main": "package/core/src/index.ts",
+                "tsConfig": "package/core/tsconfig.lib.json",
+                "assets": ["package/core/*.md"]
+            }
+        },
+        "nx-release-publish": {
+            "options": {
+                "packageRoot": "dist\\{projectRoot}"
+            }
+        }
+    }
+}

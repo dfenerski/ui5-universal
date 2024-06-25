@@ -1,0 +1,4 @@
+{
+    "name": "@ui5-universal/lib",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json"
+}

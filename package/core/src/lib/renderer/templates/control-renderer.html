@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script
+            id="sap-ui-bootstrap"
+            src="https://sdk.openui5.org/1.120.11/resources/sap-ui-core.js"
+            data-sap-ui-theme="sap_horizon"
+            data-sap-ui-async="true"
+            data-sap-ui-compatVersion="edge"
+            data-sap-ui-excludeJQueryCompat="true"
+            data-sap-ui-frameOptions="trusted"
+            data-sap-ui-xx-supportedLanguages="en,de"
+        ></script>
+    </head>
+    <body class="sapUiBody">
+        <script type="text/javascript">
+            // Create interval to keep the vdom process running
+            let ticks = 0;
+            const heartbeat = setInterval(() => {
+                console.info(`[VDom](${++ticks}) heartbeat`);
+                if (ticks === 20) {
+                    clearInterval(heartbeat);
+                    console.info(
+                        `[VDom](${ticks}) heartbeat stopped after ${ticks} ticks`,
+                    );
+                }
+            }, 5000);
+        </script>
+        <script type="text/javascript">
+            // ToDo: use the ui5 onInit bootstrap directive
+            sap.ui.getCore().attachInit(function () {
+                console.error('UI5 application initialized');
+                sap.ui.require(
+                    [
+                        'sap/ui/core/Core',
+                        'sap/m/Button',
+                        'sap/m/Text',
+                        'sap/m/Title',
+                        'sap/m/Label',
+                        'sap/m/Input',
+                        'sap/m/List',
+                        'sap/m/CustomListItem',
+                    ],
+                    function (
+                        Core,
+                        Button,
+                        Text,
+                        Title,
+                        Label,
+                        Input,
+                        List,
+                        CustomListItem,
+                    ) {
+                        const cache = {};
+                        window.ssr = function (controlFactory) {
+                            const controlSignature = String(controlFactory);
+                            if (cache[controlSignature]) {
+                                console.log(
+                                    'Reusing control HTML for signature:',
+                                    controlSignature,
+                                );
+                                console.log(cache[controlSignature]);
+                                console.log('\n');
+                                return;
+                            }
+                            const control = eval(controlSignature)();
+                            control.placeAt(document.body);
+                            Core.applyChanges();
+                            const controlHTML = control.getDomRef().outerHTML;
+                            cache[controlSignature] = controlHTML;
+                            console.log(controlHTML);
+                            console.log('\n');
+                            control.destroy();
+                            Core.applyChanges();
+                        };
+                        const event = new CustomEvent('vdReady', {
+                            detail: { message: 'Vdom is fully initialized' },
+                        });
+                        window.dispatchEvent(event);
+                    },
+                );
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "generator-ui5-ts-app": {
+    "namespace": "com.github.dfenerski.ui5_universal.static_app",
+    "framework": "OpenUI5",
+    "frameworkVersion": "1.124.0",
+    "author": "Dimitar Fenerski",
+    "initrepo": false,
+    "tstypes": "@openui5/types",
+    "tstypesVersion": "1.124.0",
+    "appId": "com.github.dfenerski.ui5_universal.static_app",
+    "appURI": "com/github/dfenerski/ui5_universal/static_app",
+    "cdnDomain": "sdk.openui5.org",
+    "defaultTheme": "sap_horizon",
+    "gte1_98_0": true,
+    "gte1_104_0": true,
+    "gte1_115_0": true,
+    "setupCompleted": true
+  }
+}

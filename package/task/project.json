@@ -1,0 +1,46 @@
+{
+    "name": "@ui5-universal/task",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "package/task/src",
+    "projectType": "library",
+    "release": {
+        "version": {
+            "generatorOptions": {
+                "packageRoot": "dist\\{projectRoot}",
+                "currentVersionResolver": "git-tag"
+            }
+        }
+    },
+    "tags": [],
+    "targets": {
+        "compile": {
+            "executor": "@nx/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "package/task/dist",
+                "main": "package/task/src/index.ts",
+                "tsConfig": "package/task/tsconfig.lib.json",
+                "assets": ["package/task/ui5.yaml"]
+            }
+        },
+        "build": {
+            "executor": "nx:run-commands",
+            "options": {
+                "commands": [
+                    "mv package/task/dist/package/task/* package/task/dist/",
+                    "rm -r package/task/dist/package",
+                    "sed -i '/Object.defineProperty(exports, \"__esModule\", { value: true });/d' package/task/dist/src/task.js",
+                    "sed -i 's/exports.default =/module.exports =/' package/task/dist/src/task.js",
+                    "sed -i 's/exports\\.\\([a-zA-Z0-9_]*\\) =/module.exports.\\1 =/' package/task/dist/src/task.js"
+                ],
+                "parallel": false
+            },
+            "dependsOn": ["compile"]
+        },
+        "nx-release-publish": {
+            "options": {
+                "packageRoot": "dist\\{projectRoot}"
+            }
+        }
+    }
+}
