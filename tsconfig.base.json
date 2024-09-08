@@ -1,0 +1,22 @@
+{
+    "extends": "@tsconfig/node22/tsconfig.json",
+    "compilerOptions": {
+        // Add dom type lib
+        "lib": ["es2023", "dom"],
+        // Rule flags
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noImplicitReturns": true,
+        // Behavior flags
+        "sourceMap": true,
+        "baseUrl": ".",
+        "skipDefaultLibCheck": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        // "verbatimModuleSyntax": true, // enabling this one will require to convert from cjs to esm, which will complicate the build process - skipping for now
+        "paths": {
+            "@ui5-universal/core": ["packages/core/src/index.ts"]
+        }
+    }
+}

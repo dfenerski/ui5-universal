@@ -1,0 +1,30 @@
+{
+    "name": "@ui5-universal",
+    "version": "0.0.0",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "ui5",
+        "ssr"
+    ],
+    "author": "Dimitar Fenerski",
+    "license": "ISC",
+    "description": "",
+    "workspaces": [
+        "packages/*"
+    ],
+    "devDependencies": {
+        "@openui5/types": "^1.128.0",
+        "@tsconfig/node22": "^22.0.0",
+        "@types/node": "^22.5.4",
+        "@ui5/cli": "^4.0.6",
+        "ts-loader": "^9.5.1",
+        "tsconfig-paths-webpack-plugin": "^4.1.0",
+        "tslib": "^2.7.0",
+        "typescript": "^5.5.4",
+        "webpack": "^5.94.0",
+        "webpack-cli": "^5.1.4",
+        "webpack-node-externals": "^3.0.0"
+    }
+}

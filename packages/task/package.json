@@ -1,0 +1,13 @@
+{
+    "name": "@ui5-universal/task",
+    "version": "0.0.1",
+    "scripts": {
+        "build": "webpack --config webpack.config.js && cp ui5.yaml dist/ui5.yaml"
+    },
+    "dependencies": {
+        "express": "^4.19.2"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.21"
+    }
+}

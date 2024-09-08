@@ -1,0 +1,8 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "declaration": true,
+        "types": ["@types/node", "@openui5/types"]
+    },
+    "include": ["src/**/*.ts"]
+}

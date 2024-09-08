@@ -1,0 +1,12 @@
+{
+    "name": "@ui5-universal/core",
+    "version": "0.0.1",
+    "dependencies": {
+        "jsdom": "^25.0.0",
+        "ua-parser-js": "^1.0.38"
+    },
+    "devDependencies": {
+        "@types/jsdom": "^21.1.7",
+        "@types/ua-parser-js": "^0.7.39"
+    }
+}
